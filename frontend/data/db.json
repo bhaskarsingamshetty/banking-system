@@ -1,0 +1,20 @@
+{
+    "accounts": [
+      {
+        "accountNumber": "2300032302",
+        "name": "Bhaskar",
+        "password": "Bhaskar@23406"
+      },
+      {
+        "accountNumber": "987654321",
+        "name": "Alice Smith",
+        "password": "SecurePass!45"
+      },
+      {
+        "accountNumber": "456789123",
+        "name": "Bob Johnson",
+        "password": "MyStr0ngPass99"
+      }
+    ]
+  }
+  
