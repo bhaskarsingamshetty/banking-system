@@ -1,132 +1,31 @@
+/* src/components/Loan.css */
+
 /* --- General Page Style --- */
 .loan-page {
   padding: 20px;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: white; /* Dark navy blue */
-  color: #ccd6f6; /* Light grey/blue text */
+  /* background-color: #0a192f; /* Dark navy blue - Set this globally or remove if set on body */
+  /* color: #ccd6f6; /* Light grey/blue text - Set this globally or remove if set on body */
   min-height: 100vh;
 }
 
-/* --- Section Styling (for form and table) --- */
+/* --- Section Styling (Common for form and table) --- */
 .loan-section {
-  background-color: #112240; /* Slightly lighter navy */
+  background-color: #1a2a47; /* Dark Navy Blue Background from image */
   border-radius: 8px;
   padding: 25px;
   margin-bottom: 30px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  color: #ffffff; /* White text within the section */
 }
 
 .loan-section h2 {
-  color: white; /* Mint green accent */
+  color: #ffffff; /* White heading */
   margin-top: 0;
   margin-bottom: 20px;
-  border-bottom: 1px solid #233554; /* Darker line */
+  border-bottom: 1px solid #3c4d6f; /* Lighter border for separation */
   padding-bottom: 10px;
-}
-
-/* --- Form Styling --- */
-.loan-form .form-group {
-  margin-bottom: 15px;
-}
-
-.loan-form label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-  color: #a8b2d1; /* Lighter text for labels */
-}
-
-.form-input,
-.form-select {
-  width: 100%;
-  padding: 10px;
-  background-color: #0a192f; /* Match page background */
-  border: 1px solid #233554; /* Darker border */
-  color: #ccd6f6;
-  border-radius: 4px;
-  font-size: 1rem;
-  box-sizing: border-box; 
-}
-
-.form-select {
-  appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2364ffda%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.4-1.8%2013-5.4l128-128c3.6-3.6%205.4-7.8%205.4-13%200-4.6-1.8-9-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
-  background-repeat: no-repeat;
-  background-position: right 10px top 50%;
-  background-size: 10px auto;
-}
-
-.form-button {
-  background-color: rgb(199, 21, 133); /* Mint green */
-  color: #0a192f; /* Dark text on button */
-  border: none;
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.form-button:hover {
-  background-color: rgb(185, 30, 120);
-  color : rgb(33, 32, 32);
-}
-
-/* --- Message Styling --- */
-.message {
-  margin-top: 15px;
-  font-weight: bold;
-}
-.message.success {
-  color: #6fb268; /* Market green */
-}
-.message.error {
-  color: #d32f2f; /* Market red */
-}
-
-/* --- Table Styling --- */
-.loan-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-.loan-table th,
-.loan-table td {
-  text-align: left;
-  padding: 12px;
-}
-.loan-table thead tr {
-  background-color: #0a192f; 
-  border-bottom: 2px solid #8c9391; /* Accent line */
-}
-.loan-table th {
-  color: #ccd6f6;
-  font-weight: bold;
-}
-.loan-table tbody tr {
-  border-bottom: 1px solid #233554; 
-  transition: background-color 0.2s ease;
-}
-.loan-table tbody tr:last-child {
-  border-bottom: none;
-}
-.loan-table tbody tr:hover {
-  background-color: #172a45; 
-}
-
-/* --- Status Cell Styling --- */
-.status-pending {
-  color: #f5a623; /* Yellow/Orange */
-  font-weight: bold;
-}
-.status-approved {
-  color: #00c853; /* Green */
-  font-weight: bold;
-}
-.status-rejected {
-  color: #d32f2f; /* Red */
-  font-weight: bold;
+  font-size: 1.4rem; /* Slightly larger heading */
 }
 
 /* --- Form Centering Styles --- */
@@ -136,34 +35,154 @@
   width: 100%;
 }
 .form-container > .loan-section {
-  max-width: 600px;
+  max-width: 600px; /* Keep form width constrained */
   width: 100%;
 }
-/* --- ADD THESE STYLES TO THE BOTTOM of LoanPage.css --- */
 
-/* Wrapper to center the table */
+/* --- Form Styling (Adjust background/color to match dark theme) --- */
+.loan-form .form-group {
+  margin-bottom: 15px;
+}
+
+.loan-form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px; /* Slightly more space */
+  color: #a8b2d1; /* Lighter text for labels */
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 12px; /* Increase padding */
+  background-color: #0f1c34; /* Darker input background */
+  border: 1px solid #3c4d6f; /* Border matching theme */
+  color: #ccd6f6; /* Light text */
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.form-select {
+  appearance: none;
+  /* Basic SVG arrow - consider styling or using an icon library */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23a8b2d1%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20128c3.6%203.6%207.8%205.4%2013%205.4s9.4-1.8%2013-5.4l128-128c3.6-3.6%205.4-7.8%205.4-13%200-4.6-1.8-9-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 10px auto;
+}
+
+.form-button {
+  background-color: rgb(199, 21, 133); /* Pink accent button */
+  color: #ffffff; /* White text on button */
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Make button full width */
+  margin-top: 10px; /* Add some space above button */
+}
+
+.form-button:hover {
+  background-color: rgb(170, 18, 113); /* Darker pink */
+}
+
+/* --- Message Styling --- */
+.message {
+  margin-top: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+.message.success {
+  color: #6fb268; /* Green */
+}
+.message.error {
+  color: #ff6b6b; /* Red */
+}
+
+/* --- Table Centering & Width --- */
 .table-container {
   display: flex;
   justify-content: center;
   width: 100%;
 }
 
-/* This targets the .loan-section *only* inside the .table-container.
-  I've set the max-width to 900px, but you can change this
-  to whatever width you like (e.g., 800px, 1000px).
-*/
 .table-container > .loan-section {
-  max-width: 900px; /* You can adjust this width */
+  max-width: 900px; /* Adjust max-width as needed */
   width: 100%;
 }
 
-/* This makes the table scroll horizontally on small screens
-  instead of squishing the content.
-*/
+/* --- Updated Table Styling --- */
 .loan-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 15px; /* Space above table */
   display: block; /* Allows horizontal scrolling */
   overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.loan-table th,
+.loan-table td {
+  text-align: left;
+  padding: 12px 15px; /* Consistent padding */
+  border-bottom: 1px solid #3c4d6f; /* Separator lines matching theme */
+  color: #ccd6f6; /* Light text for cells */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+.loan-table thead tr {
+  background-color: transparent; /* Header background matches section */
+  border-bottom: 2px solid #5d729c; /* Thicker header underline */
+}
+
+.loan-table th {
+  color: #ffffff; /* White header text */
+  font-weight: bold;
+  font-size: 0.9rem; /* Slightly smaller header text */
+  text-transform: uppercase; /* Uppercase headers */
+  letter-spacing: 0.5px; /* Add slight letter spacing */
+}
+
+.loan-table tbody tr {
+  background-color: transparent; /* Ensure row background matches section */
+  transition: background-color 0.2s ease;
+}
+
+.loan-table tbody tr:last-child td {
+  border-bottom: none; /* Remove border from last row */
+}
+
+.loan-table tbody tr:hover {
+  background-color: #2a3a5a; /* Slightly lighter background on hover */
+}
+
+/* --- Status Cell Styling (Adjust colors) --- */
+.status-pending { /* Based on image */
+  color: #f7b731; /* Orange/Yellow */
+  font-weight: bold;
+}
+.status-approved { /* Assuming green for approved */
+  color: #2ecc71; /* Green */
+  font-weight: bold;
+}
+.status-rejected { /* Based on image */
+  color: #e74c3c; /* Red */
+  font-weight: bold;
+}
+
+/* --- Responsive adjustments if needed --- */
+@media (max-width: 600px) {
+  .loan-section {
+    padding: 15px;
+  }
+  .loan-table th,
+  .loan-table td {
+    padding: 10px 8px;
+  }
+  .loan-section h2 {
+    font-size: 1.2rem;
+  }
 }

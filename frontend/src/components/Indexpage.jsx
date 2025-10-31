@@ -3,6 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import HeroSection from "./HeroSection"; // <-- Add this line
 
 function Indexpage() {
     const location = useLocation();
@@ -14,6 +15,7 @@ function Indexpage() {
     return (
         <>
             <Header />
+            <HeroSection />
             <Main accountnumber={accountnumber} />
             <Footer />
             <Outlet />

@@ -8,26 +8,34 @@ function Header() {
 
     function handleLogout() {
         localStorage.removeItem('token'); // Clear token
-        navigate('/'); // Redirect to login page (adjust if your route is different)
+        localStorage.removeItem('accountNumber'); // Also clear account number
+        navigate('/'); // Redirect to login page
     }
 
     return (
         <div className="container">
             <div className="header">
-                <img src={logo} alt="" className="logo" />
-                <div className="heading">Trust One Bank</div>
+                {/* Group logo and heading */}
+                <div className="header-left">
+                     <img src={logo} alt="Trust One Bank Logo" className="logo" onClick={() => navigate('/index')} />
+                     <div className="heading" onClick={() => navigate('/index')}>Trust One Bank</div>
+                </div>
+                {/* Menu section */}
                 <div className="menu">
-                    <div className="searchform">
+                    <form className="searchform" onSubmit={(e) => e.preventDefault()}> {/* Added form and preventDefault */}
                         <input
                             type="text"
-                            placeholder="search here"
+                            placeholder="Search here"
                             id="search"
+                            aria-label="Search" // Added aria-label for accessibility
                         />
-                        <button type="submit" className="searchbutton"><IoSearch /></button>
-                    </div>
-                    <span onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</span>
+                        <button type="submit" className="searchbutton" aria-label="Submit search"><IoSearch /></button> {/* Added aria-label */}
+                    </form>
+                    {/* Use button for logout for better semantics */}
+                    <button onClick={handleLogout} style={{ cursor: 'pointer', background: 'none', border: 'none', color: 'white', fontSize: '1rem' }}>Log Out</button>
                 </div>
             </div>
+            {/* Menubar remains below header */}
             <Menubar />
         </div>
     )

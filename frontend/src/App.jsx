@@ -10,6 +10,7 @@ import History from './components/History'
 import Upi from './components/Upi';
 import Billpayments from './components/Billpayments';
 import Signup from './components/Signup';
+import HeroSection from './components/HeroSection';
 
 const router=createBrowserRouter([
   {
