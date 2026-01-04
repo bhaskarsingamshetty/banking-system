@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Loan.css';
 import { callApi } from '../api.js';   // ✅ import your callApi
 
-const API_URL = 'http://localhost:8081/api/loans';
+const API_URL = 'http://localhost:8081/loan';
 
 function Loan() {
   const [loanType, setLoanType] = useState('PERSONAL');
@@ -12,15 +12,15 @@ function Loan() {
 
   // ✅ Fetch user loans using callApi()
   const fetchUserLoans = () => {
-    const ACCOUNT_NUMBER = localStorage.getItem('accountNumber');
-    if (!ACCOUNT_NUMBER) {
+    const id = localStorage.getItem('id');
+    if (!id) {
       setMessage("Please login to view loans.");
       return;
     }
 
     callApi(
       "GET",
-      `${API_URL}/user/${ACCOUNT_NUMBER}`,
+      `${API_URL}/getloans/${id}`,
       null,
       (data) => {
         try {
@@ -136,20 +136,20 @@ function Loan() {
                   <th>Amount</th>
                   <th>Status</th>
                   <th>Interest Rate</th>
-                  <th>Due Date</th>
+                  {/* <th>Due Date</th> */}
                 </tr>
               </thead>
               <tbody>
                 {loans.map((loan) => (
-                  <tr key={loan.loanId}>
-                    <td>{loan.loanId}</td>
-                    <td>{loan.loanType}</td>
-                    <td>${loan.amount.toFixed(2)}</td>
+                  <tr key={loan.id}>
+                    <td>{loan.id}</td>
+                    <td>{loan.type}</td>
+                    <td>${loan.amount}</td>
                     <td className={`status-${String(loan.status).toLowerCase()}`}>
                       {loan.status}
                     </td>
-                    <td>{loan.interestRate}%</td>
-                    <td>{loan.dueDate}</td>
+                    <td>{loan.intrestrate}%</td>
+                    {/* <td>{loan.dueDate}</td> */}
                   </tr>
                 ))}
               </tbody>

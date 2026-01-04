@@ -10,7 +10,7 @@ function LoginPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8081/api/login', {
+      const response = await fetch('http://localhost:8081/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: username, password: password })
@@ -20,9 +20,9 @@ function LoginPage() {
         const data = await response.json();
         if (data.token) {
           localStorage.setItem('token', data.token);
-          localStorage.setItem('accountNumber', data.accountNumber);
-          const accountnumber = data.accountNumber;
-          navigate('/index',{ state: { accountnumber: accountnumber } });
+          localStorage.setItem('id', data.id);
+          const id = data.id;
+          navigate('/index',{ state: { accountnumber: id } });
         } else {
           alert('Token not received.');
         }
