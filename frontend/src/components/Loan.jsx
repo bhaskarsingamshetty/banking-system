@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './Loan.css'; // Make sure this CSS file is imported
+import './Loan.css';
+import { callApi } from '../api.js';   // ✅ import your callApi
 
-// ✅ REMOVED const ACCOUNT_NUMBER and const TOKEN from here
-
-const API_URL = 'http://localhost:8081/api/loans'; 
+const API_URL = 'http://localhost:8081/api/loans';
 
 function Loan() {
   const [loanType, setLoanType] = useState('PERSONAL');
@@ -11,63 +10,56 @@ function Loan() {
   const [loans, setLoans] = useState([]);
   const [message, setMessage] = useState('');
 
-  const fetchUserLoans = async () => {
-    // ✅ MOVED these lines INSIDE the function
+  // ✅ Fetch user loans using callApi()
+  const fetchUserLoans = () => {
     const ACCOUNT_NUMBER = localStorage.getItem('accountNumber');
-    const TOKEN = localStorage.getItem('token');
-
-    if (!ACCOUNT_NUMBER || !TOKEN) { 
-      setMessage('Please log in to view loans.');
+    if (!ACCOUNT_NUMBER) {
+      setMessage("Please login to view loans.");
       return;
     }
 
-    try {
-      const response = await fetch(`${API_URL}/user/${ACCOUNT_NUMBER}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN}`,
-        },
-      });
-      if (!response.ok) throw new Error('Failed to fetch loans');
-      const data = await response.json();
-      setLoans(data);
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
+    callApi(
+      "GET",
+      `${API_URL}/user/${ACCOUNT_NUMBER}`,
+      null,
+      (data) => {
+        try {
+          setLoans(JSON.parse(data));
+        } catch (e) {
+          setMessage("Error processing loan data.");
+        }
+      }
+    );
   };
 
-  const handleSubmit = async (e) => {
+  // ✅ Handle loan application using callApi()
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setMessage('');
+    setMessage("");
 
-    // ✅ MOVED these lines INSIDE the function
     const ACCOUNT_NUMBER = localStorage.getItem('accountNumber');
-    const TOKEN = localStorage.getItem('token');
-
-    if (!ACCOUNT_NUMBER || !TOKEN) { 
-      setMessage('Please log in to apply for a loan.');
+    if (!ACCOUNT_NUMBER) {
+      setMessage("Please login to apply for a loan.");
       return;
     }
-    const loanApplication = { loanType, amount: parseFloat(amount) };
-    try {
-      const response = await fetch(`${API_URL}/apply/${ACCOUNT_NUMBER}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${TOKEN}`,
-        },
-        body: JSON.stringify(loanApplication),
-      });
-      if (!response.ok) throw new Error('Loan application failed');
-      const newLoan = await response.json();
-      setMessage(`Loan application successful! Loan ID: ${newLoan.loanId}`);
-      setAmount('');
-      setLoanType('PERSONAL');
-      fetchUserLoans();
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    }
+
+    const loanApplication = {
+      loanType,
+      amount: parseFloat(amount),
+    };
+
+    callApi(
+      "POST",
+      `${API_URL}/apply/${ACCOUNT_NUMBER}`,
+      JSON.stringify(loanApplication),
+      (data) => {
+        const newLoan = JSON.parse(data);
+        setMessage(`Loan application successful! Loan ID: ${newLoan.loanId}`);
+        setAmount("");
+        setLoanType("PERSONAL");
+        fetchUserLoans();
+      }
+    );
   };
 
   useEffect(() => {
@@ -76,18 +68,20 @@ function Loan() {
 
   return (
     <div className="loan-page">
-      
-      {/* Centered Form Section */}
-      <div className="form-container"> 
+
+      {/* Form Section */}
+      <div className="form-container">
         <div className="loan-section">
           <h2>Apply for a Loan</h2>
+
           <form onSubmit={handleSubmit} className="loan-form">
-             <div className="form-group">
+
+            <div className="form-group">
               <label>
                 Loan Type:
-                <select 
-                  value={loanType} 
-                  onChange={(e) => setLoanType(e.target.value)} 
+                <select
+                  value={loanType}
+                  onChange={(e) => setLoanType(e.target.value)}
                   required
                   className="form-select"
                 >
@@ -98,6 +92,7 @@ function Loan() {
                 </select>
               </label>
             </div>
+
             <div className="form-group">
               <label>
                 Amount:
@@ -113,9 +108,11 @@ function Loan() {
                 />
               </label>
             </div>
+
             <button type="submit" className="form-button">Apply</button>
           </form>
-          {message && 
+
+          {message &&
             <p className={`message ${message.startsWith('Error') ? 'error' : 'success'}`}>
               {message}
             </p>
@@ -123,10 +120,11 @@ function Loan() {
         </div>
       </div>
 
-      {/* Centered Table Section */}
+      {/* Table Section */}
       <div className="table-container">
         <div className="loan-section">
           <h2>Your Loans</h2>
+
           {loans.length === 0 ? (
             <p>You have no active loans.</p>
           ) : (
@@ -157,6 +155,7 @@ function Loan() {
               </tbody>
             </table>
           )}
+
         </div>
       </div>
 

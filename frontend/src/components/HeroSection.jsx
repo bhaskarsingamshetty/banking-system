@@ -1,12 +1,16 @@
-// src/components/HeroSection.jsx
 import React from 'react';
-import './HeroSection.css'; // Make sure CSS is imported
-import heroVideo from '../assets/herovideo2.mp4'; // <-- Import the video
+import './HeroSection.css'; 
+import heroVideo from '../assets/herovideo2.mp4';
 
-function HeroSection() {
+function HeroSection({ serviceRef }) {
+ const handleClick = () => {
+    serviceRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  };
   return (
     <div className="hero-container">
-      {/* Video Background */}
       <video
         autoPlay // Start playing automatically
         loop // Loop the video
@@ -25,7 +29,7 @@ function HeroSection() {
       <div className="hero-content">
         <h1>Welcome to Trust One Bank</h1>
         <p>Secure, simple banking designed for you.</p>
-        <button className="hero-button" onClick={() => {/* Navigate */}}>
+        <button className="hero-button" onClick={handleClick}>
           Explore Services
         </button>
       </div>

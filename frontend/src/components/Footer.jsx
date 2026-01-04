@@ -1,7 +1,13 @@
 import React from "react";
 import { FaFacebook, FaLinkedin, FaInstagram } from "react-icons/fa"; // Simplified imports
 
-const Footer = () => {
+const Footer = ({serviceRef}) => {
+  const handileservice=()=>{
+    serviceRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -18,7 +24,7 @@ const Footer = () => {
           <ul className="footer-links">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li> {/* Assuming these routes exist or will */}
-            <li><a href="/services">Services</a></li> {/* Assuming these routes exist or will */}
+            <li><a onClick={handileservice}>Services</a></li> {/* Assuming these routes exist or will */}
           </ul>
         </div>
 

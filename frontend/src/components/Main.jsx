@@ -2,7 +2,7 @@ import Balance from "./Balance"
 import Services from "./Services"
 import { useEffect, useRef } from "react";
 
-function Main({accountnumber}){
+function Main({accountnumber,serviceRef}){
     useEffect(() => {
             window.scrollTo(0, 0);
           }, []);
@@ -10,7 +10,7 @@ function Main({accountnumber}){
         <>
         <Balance accountnumber={accountnumber}/>
         <h1 className="promotingline">WHERE YOUR MONEY GROWS SAFELY, AND YOUR TRUST STAYS STRONG</h1>
-        <Services />
+        <Services ref={serviceRef}/>
         </>
     )
 }
